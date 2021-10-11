@@ -737,7 +737,7 @@ class ditto {
         $fields = 'stv.name,stc.tmplvarid,stc.contentid,stv.type,stv.display,stv.display_params,stc.value';
         $from[] = '[+prefix+]site_tmplvar_contentvalues AS stc';
         $from[] = 'LEFT JOIN [+prefix+]site_tmplvars AS stv ON stv.id=stc.tmplvarid';
-        $where = sprintf("stv.name='%s' AND stc.contentid IN (%s)", $modx->db->escape($tvname), join($docIDs,','));
+        $where = sprintf("stv.name='%s' AND stc.contentid IN (%s)", $modx->db->escape($tvname), implode(',',$docIDs));
         $rs= $modx->db->select($fields, $from, $where, 'stc.contentid ASC');
 
         $docs = array();
