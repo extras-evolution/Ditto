@@ -491,7 +491,8 @@ class ditto {
         $code .= 'return $retval;';
 
         $params = ($order == 'ASC') ? '$a,$b' : '$b,$a';
-        uasort($data, create_function($params, $code));
+        //uasort($data, create_function($params, $code));
+        uasort($data, function($params) use ($code){ return $code;});
         return $data;
     }
 
